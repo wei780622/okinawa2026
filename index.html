@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌺 沖繩行程 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #EEF6FB; color: #2d3436; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #0077B6; display: flex; overflow-x: auto;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    flex: 0 0 auto; color: #fff; text-decoration: none;
+    padding: 14px 18px; font-size: 14px; font-weight: 600;
+    white-space: nowrap; opacity: 0.75; transition: opacity 0.2s;
+  }
+  nav a:hover, nav a.active { opacity: 1; border-bottom: 3px solid #FFD166; }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0077B6 0%, #00B4D8 100%);
+    color: white; padding: 36px 20px 28px; text-align: center;
+  }
+  .hero h1 { font-size: 26px; margin-bottom: 8px; }
+  .hero p { font-size: 14px; opacity: 0.85; line-height: 1.7; }
+
+  /* INFO GRID */
+  .info-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; padding: 16px;
+  }
+  .info-card {
+    background: white; border-radius: 12px; padding: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .info-card .label { font-size: 11px; color: #888; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .info-card .value { font-size: 14px; font-weight: 600; color: #0077B6; }
+
+  /* SECTION */
+  .section { padding: 0 16px 16px; }
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 20px 0 12px;
+  }
+  .section-header .day-badge {
+    background: #0077B6; color: white; border-radius: 20px;
+    padding: 4px 14px; font-size: 13px; font-weight: 700; white-space: nowrap;
+  }
+  .section-header h2 { font-size: 18px; color: #0077B6; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 6px; top: 0; bottom: 0;
+    width: 2px; background: #BEE9F5;
+  }
+  .timeline-item { position: relative; margin-bottom: 14px; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -17px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #0077B6; border: 2px solid white;
+    box-shadow: 0 0 0 2px #0077B6;
+  }
+
+  /* CARD */
+  .card {
+    background: white; border-radius: 14px; padding: 14px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07); margin-bottom: 10px;
+  }
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .time-badge {
+    background: #EEF6FB; color: #0077B6; border-radius: 8px;
+    padding: 3px 8px; font-size: 12px; font-weight: 700; white-space: nowrap; margin-top: 2px;
+  }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .card .desc { font-size: 13px; color: #636e72; line-height: 1.6; margin-bottom: 10px; }
+  .card .note { font-size: 12px; color: #e17055; background: #FFF5F3; border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; line-height: 1.6; }
+  .card .note strong { display: block; margin-bottom: 2px; }
+
+  /* MAP BUTTON */
+  .map-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #0077B6; color: white; text-decoration: none;
+    border-radius: 20px; padding: 7px 16px; font-size: 13px; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .map-btn:hover { background: #005F92; }
+  .map-btn svg { width: 14px; height: 14px; }
+
+  /* RESTAURANT OPTIONS */
+  .options-label {
+    font-size: 12px; font-weight: 700; color: #888;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin: 14px 0 8px;
+  }
+  .restaurant-card {
+    background: #F8FBFF; border: 1px solid #D0E8F5; border-radius: 12px;
+    margin-bottom: 10px; overflow: hidden;
+  }
+  .restaurant-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; cursor: pointer; gap: 8px;
+  }
+  .restaurant-header h4 { font-size: 15px; font-weight: 700; }
+  .restaurant-header .price { font-size: 12px; color: #00B4D8; font-weight: 600; white-space: nowrap; }
+  .restaurant-body { padding: 0 14px 12px; display: none; }
+  .restaurant-body.open { display: block; }
+  .restaurant-body .desc { font-size: 13px; color: #636e72; margin-bottom: 10px; line-height: 1.6; }
+  .dish-list { list-style: none; margin-bottom: 12px; }
+  .dish-list li {
+    display: flex; gap: 8px; align-items: flex-start;
+    font-size: 13px; padding: 5px 0; border-bottom: 1px solid #E8F4FB;
+    line-height: 1.5;
+  }
+  .dish-list li:last-child { border-bottom: none; }
+  .dish-list li .dish-name { font-weight: 600; min-width: 130px; }
+  .dish-list li .dish-desc { color: #636e72; }
+  .toggle-arrow { font-size: 12px; color: #aaa; transition: transform 0.2s; }
+  .toggle-arrow.open { transform: rotate(180deg); }
+
+  /* TRANSPORT BOX */
+  .transport-box {
+    background: #F0FFF8; border: 1px solid #B2E4CC; border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 10px;
+  }
+  .transport-box h4 { font-size: 13px; font-weight: 700; color: #27ae60; margin-bottom: 8px; }
+  .transport-row {
+    display: flex; gap: 8px; align-items: flex-start;
+    font-size: 13px; padding: 4px 0; border-bottom: 1px solid #D5F0E3;
+  }
+  .transport-row:last-child { border-bottom: none; }
+  .transport-row .method { font-weight: 600; min-width: 70px; color: #27ae60; }
+  .transport-row .detail { color: #555; line-height: 1.5; }
+
+  /* ROUTE SPLIT */
+  .route-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .route-btn {
+    border: none; border-radius: 12px; padding: 14px; cursor: pointer;
+    font-size: 14px; font-weight: 700; text-align: center; line-height: 1.5;
+    transition: transform 0.15s;
+  }
+  .route-btn:active { transform: scale(0.97); }
+  .route-a { background: #FFD166; color: #5A3E00; }
+  .route-b { background: #C9E8FF; color: #003F6B; }
+  .route-section { display: none; }
+  .route-section.active { display: block; }
+
+  /* SHOPPING LIST */
+  .shopping-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: white; border-radius: 12px; padding: 12px 14px;
+    margin-bottom: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .shopping-icon { font-size: 22px; }
+  .shopping-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .shopping-info p { font-size: 12px; color: #636e72; line-height: 1.5; }
+
+  /* RAIN BADGE */
+  .rain-header {
+    background: linear-gradient(135deg, #4A90D9, #7EC8E3);
+    color: white; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px;
+    font-size: 14px; line-height: 1.7;
+  }
+  .rain-header strong { display: block; font-size: 16px; margin-bottom: 4px; }
+
+  .card-img {
+    width: calc(100% + 32px);
+    margin: -14px -16px 12px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 14px 14px 0 0;
+    display: block;
+  }
+  .card-img-grad {
+    width: calc(100% + 32px);
+    margin: -14px -16px 12px;
+    height: 90px;
+    border-radius: 14px 14px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  .tag {
+    display: inline-block; border-radius: 6px; padding: 2px 8px;
+    font-size: 11px; font-weight: 700; margin-right: 4px; margin-bottom: 4px;
+  }
+  .tag-free { background: #D5F5E3; color: #1e8449; }
+  .tag-reserve { background: #FDEBD0; color: #a04000; }
+  .tag-indoor { background: #D6EAF8; color: #1a5276; }
+  .tag-must { background: #FDEDEC; color: #922b21; }
+
+  .divider { height: 1px; background: #DDE8EF; margin: 16px 0; }
+
+  footer { text-align: center; padding: 24px; font-size: 12px; color: #999; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#day1">Day 1</a>
+  <a href="#day2">Day 2</a>
+  <a href="#day3">Day 3</a>
+  <a href="#day4">Day 4</a>
+  <a href="#rain">☔ 雨天</a>
+  <a href="#shopping">伴手禮</a>
+</nav>
+
+<div class="hero">
+  <h1>🌺 沖繩 4 天 3 夜</h1>
+  <p>2026 年 6 月 11 日（四）－ 6 月 14 日（日）<br>3 人同行｜Hotel JAL City Naha</p>
+</div>
+
+<div class="info-grid">
+  <div class="info-card">
+    <div class="label">去程</div>
+    <div class="value">MM924<br><span style="font-size:12px;color:#555">落地 17:35</span></div>
+  </div>
+  <div class="info-card">
+    <div class="label">回程</div>
+    <div class="value">MM929<br><span style="font-size:12px;color:#555">起飛 16:45</span></div>
+  </div>
+  <div class="info-card" style="grid-column: 1/-1">
+    <div class="label">住宿</div>
+    <div class="value">Hotel JAL City Naha<br><span style="font-size:12px;color:#555">牧志・國際通正上方｜最近單軌：美栄橋駅（步行 8 分鐘）</span></div>
+  </div>
+</div>
+
+<!-- ===================== DAY 1 ===================== -->
+<div class="section" id="day1">
+  <div class="section-header">
+    <span class="day-badge">Day 1</span>
+    <h2>抵達 → 國際通</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="time-badge">17:35</span>
+            <h3 style="margin-top:6px">那霸機場落地</h3>
+          </div>
+        </div>
+        <p class="desc">通關 + 取行李，預估 18:15 完成。</p>
+        <div class="transport-box">
+          <h4>🚖 機場 → Hotel JAL City Naha</h4>
+          <div class="transport-row">
+            <span class="method">計程車</span>
+            <span class="detail">約 15–20 分鐘｜¥1,500–2,000<br>3 人有行李最方便，直達飯店門口</span>
+          </div>
+          <div class="transport-row">
+            <span class="method">單軌</span>
+            <span class="detail">那霸空港站 → 美栄橋駅，約 20 分鐘｜¥370/人<br>出站再步行 8 分鐘至飯店</span>
+          </div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=那覇空港" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          那霸機場導航
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="time-badge">18:50</span>
+            <h3 style="margin-top:6px">飯店 Check-in</h3>
+          </div>
+        </div>
+        <p class="desc">Hotel JAL City Naha，放行李、換裝，步行 3 分鐘即到國際通。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=Hotel+JAL+City+Naha" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          飯店導航
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="time-badge">19:30</span>
+            <h3 style="margin-top:6px">晚餐</h3>
+          </div>
+        </div>
+        <p class="desc">步行至國際通，3 間餐廳選 1。</p>
+        <div class="options-label">餐廳選項（點展開看推薦餐點）</div>
+
+        <div class="restaurant-card">
+          <div class="restaurant-header" onclick="toggleRestaurant(this)">
+            <div>
+              <h4>🥇 選項 A｜ゆうなんぎぃ</h4>
+              <span class="tag tag-reserve">建議訂位</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="price">¥2,000–3,000/人</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="restaurant-body">
+            <p class="desc">沖繩家庭料理老店，有榻榻米包廂，氣氛輕鬆溫馨。距飯店步行約 5 分鐘。</p>
+            <ul class="dish-list">
+              <li><span class="dish-name">海葡萄（うみぶどう）</span><span class="dish-desc">沖繩限定海藻，口感像魚卵爆珠，蘸醬油吃</span></li>
+              <li><span class="dish-name">苦瓜炒豆腐（ゴーヤチャンプルー）</span><span class="dish-desc">沖繩最代表性家常菜，微苦清爽</span></li>
+              <li><span class="dish-name">軟骨排骨麵（ソーキそば）</span><span class="dish-desc">沖繩麵必點，湯頭清甜、骨邊肉軟嫩</span></li>
+              <li><span class="dish-name">豬腳（テビチ）</span><span class="dish-desc">膠質豐富，燉得軟爛入味</span></li>
+              <li><span class="dish-name">泡盛</span><span class="dish-desc">沖繩在地蒸餾酒，可小酌一杯</span></li>
+            </ul>
+            <a class="map-btn" href="https://maps.google.com/?q=ゆうなんぎぃ+那覇" target="_blank">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="restaurant-card">
+          <div class="restaurant-header" onclick="toggleRestaurant(this)">
+            <div><h4>選項 B｜浜の家</h4></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="price">¥2,500–3,500/人</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="restaurant-body">
+            <p class="desc">套餐制沖繩料理，含泡盛、海葡萄、豬腳，超值豐盛，適合想一次吃到多樣料理的朋友。</p>
+            <ul class="dish-list">
+              <li><span class="dish-name">沖繩料理套餐</span><span class="dish-desc">含海葡萄、苦瓜炒豆腐、豬腳、泡盛一杯，一次到位</span></li>
+              <li><span class="dish-name">海葡萄（うみぶどう）</span><span class="dish-desc">套餐必含，沖繩限定海藻</span></li>
+              <li><span class="dish-name">豬腳（テビチ）</span><span class="dish-desc">燉煮入味，膠質豐富</span></li>
+            </ul>
+            <a class="map-btn" href="https://maps.google.com/?q=浜の家+那覇+沖縄料理" target="_blank">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="restaurant-card">
+          <div class="restaurant-header" onclick="toggleRestaurant(this)">
+            <div><h4>選項 C｜三笠食堂</h4></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="price">¥1,000–1,500/人</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="restaurant-body">
+            <p class="desc">在地人去的傳統食堂，不用訂位，隨到隨吃。適合第一天剛到不想麻煩的輕鬆選擇。</p>
+            <ul class="dish-list">
+              <li><span class="dish-name">炒苦瓜定食</span><span class="dish-desc">份量大、平價、道地</span></li>
+              <li><span class="dish-name">沖繩麵（沖縄そば）</span><span class="dish-desc">清淡好消化</span></li>
+              <li><span class="dish-name">日替り定食</span><span class="dish-desc">每日例湯定食，隨機驚喜</span></li>
+            </ul>
+            <a class="map-btn" href="https://maps.google.com/?q=三笠食堂+那覇" target="_blank">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="card">
+        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Naha_montage.jpg/800px-Naha_montage.jpg" alt="國際通">
+        <span class="time-badge">20:30</span>
+        <h3 style="margin-top:6px">逛國際通</h3>
+        <p class="desc" style="margin-top:4px">藥妝、紀念品隨意逛，21:30 回飯店休息。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=国際通り+那覇" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          國際通導航
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DAY 2 ===================== -->
+<div class="section" id="day2">
+  <div class="section-header">
+    <span class="day-badge">Day 2</span>
+    <h2>牧志 → 波上宮 → Parco City</h2>
+  </div>
+  <p style="font-size:13px;color:#888;margin-bottom:12px;padding-left:4px">💡 建議購買 Yui Rail 一日券 ¥800（各站窗口購買）</p>
+
+  <div class="timeline">
+
+    <!-- 早餐 -->
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">08:00</span>
+        <h3 style="margin-top:6px">早餐｜ポーたま 牧志市場店</h3>
+        <p class="desc" style="margin-top:4px">沖繩靈魂早餐，SPAM 午餐肉 + 厚煎蛋 + 海苔包白飯。07:00 開門，步行 12 分鐘可到。</p>
+        <span class="tag tag-must">必吃</span>
+        <ul class="dish-list" style="margin-top:10px">
+          <li><span class="dish-name">定番ポーたま</span><span class="dish-desc">原味豬肉蛋飯糰，必點基本款</span></li>
+          <li><span class="dish-name">ゴーヤ天ぷら入り</span><span class="dish-desc">加苦瓜天婦羅，沖繩風味更濃</span></li>
+          <li><span class="dish-name">チーズ入り</span><span class="dish-desc">加起司，口感滑順</span></li>
+          <li><span class="dish-name">島豆腐入り</span><span class="dish-desc">加島豆腐，紮實飽足</span></li>
+        </ul>
+        <p style="font-size:12px;color:#888;margin-bottom:10px">價位：¥400–700 / 個</p>
+        <a class="map-btn" href="https://maps.google.com/?q=ポーたま+牧志市場店" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+
+    <!-- 牧志公設市場 -->
+    <div class="timeline-item">
+      <div class="card">
+        <div class="card-img-grad" style="background:linear-gradient(135deg,#f39c12,#e67e22)">🐟</div>
+        <span class="time-badge">09:00</span>
+        <h3 style="margin-top:6px">牧志公設市場</h3>
+        <span class="tag tag-free">免費入場</span><span class="tag tag-indoor">室內</span>
+        <p class="desc" style="margin-top:8px">那霸最具生命力的傳統市場，販售沖繩食材、熱帶水果、海鮮。早上最熱鬧，攤販剛開、食材最新鮮，逛逛感受市場氛圍即可。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=第一牧志公設市場" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+
+    <!-- 壺屋 -->
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">10:00</span>
+        <h3 style="margin-top:6px">壺屋やちむん通り</h3>
+        <span class="tag tag-free">免費</span>
+        <p class="desc" style="margin-top:8px">「やちむん」為沖繩方言的「陶器」，約 300 年歷史的傳統陶藝街，距牧志市場步行 10 分鐘。可買小陶碗、杯子當伴手禮，價格合理，輕鬆散步。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=壺屋やちむん通り+那覇" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+
+    <!-- 午餐 -->
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">11:30</span>
+        <h3 style="margin-top:6px">午餐</h3>
+        <p class="desc" style="margin-top:4px">牧志 / 縣廳前一帶，3 間餐廳選 1。</p>
+        <div class="options-label">餐廳選項</div>
+
+        <div class="restaurant-card">
+          <div class="restaurant-header" onclick="toggleRestaurant(this)">
+            <div><h4>選項 A｜沖縄そば 田 那覇店</h4></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="price">¥900–1,200/人</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="restaurant-body">
+            <p class="desc">沖繩麵專門店，湯頭以豬骨 + 柴魚熬製，清甜不膩。</p>
+            <ul class="dish-list">
+              <li><span class="dish-name">ソーキそば</span><span class="dish-desc">軟骨豬排骨麵，骨邊肉軟嫩</span></li>
+              <li><span class="dish-name">三枚肉そば</span><span class="dish-desc">三層五花肉麵，油脂豐富</span></li>
+              <li><span class="dish-name">じゅーしー</span><span class="dish-desc">沖繩炊飯，可加點搭配</span></li>
+            </ul>
+            <a class="map-btn" href="https://maps.google.com/?q=沖縄そば+田+那覇" target="_blank">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="restaurant-card">
+          <div class="restaurant-header" onclick="toggleRestaurant(this)">
+            <div><h4>選項 B｜パレットくもじ 地下美食街</h4></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="price">¥800–1,500/人</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="restaurant-body">
+            <p class="desc">縣廳前百貨地下樓，多種餐廳並排，適合口味各異的 3 人各自選擇喜歡的店。不用訂位。</p>
+            <a class="map-btn" href="https://maps.google.com/?q=パレットくもじ+那覇" target="_blank">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="restaurant-card">
+          <div class="restaurant-header" onclick="toggleRestaurant(this)">
+            <div><h4>選項 C｜A&W 国際通り店</h4></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="price">¥700–1,200/人</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="restaurant-body">
+            <p class="desc">沖繩限定連鎖速食，台灣吃不到。</p>
+            <ul class="dish-list">
+              <li><span class="dish-name">根汁浮冰（Root Beer Float）</span><span class="dish-desc">沖繩 A&W 招牌，必喝</span></li>
+              <li><span class="dish-name">起司漢堡套餐</span><span class="dish-desc">經典美式</span></li>
+              <li><span class="dish-name">炸雞套餐</span><span class="dish-desc">份量大、價格實惠</span></li>
+            </ul>
+            <a class="map-btn" href="https://maps.google.com/?q=A%26W+国際通り+那覇" target="_blank">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 波上宮 -->
+    <div class="timeline-item">
+      <div class="card">
+        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/The_distant_view_of_Naminoueg%C5%AB_Honden.jpg/800px-The_distant_view_of_Naminoueg%C5%AB_Honden.jpg" alt="波上宮">
+        <span class="time-badge">13:00</span>
+        <h3 style="margin-top:6px">波上宮</h3>
+        <span class="tag tag-free">免費</span><span class="tag tag-indoor">雨天可去</span>
+        <p class="desc" style="margin-top:8px">沖繩最古老、地位最高的神社，建在珊瑚礁岩壁上。鮮紅鳥居配上蔚藍大海，下午光線充足，拍照更漂亮。神社有屋頂走廊，下雨也可參觀。</p>
+        <p style="font-size:12px;color:#888;margin-bottom:10px">交通：牧志駅 → 旭橋駅（2 站）→ 步行 15 分鐘</p>
+        <a class="map-btn" href="https://maps.google.com/?q=波上宮+那覇" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+
+    <!-- 波上海灘 -->
+    <div class="timeline-item">
+      <div class="card">
+        <div class="card-img-grad" style="background:linear-gradient(135deg,#0096c7,#48cae4)">🏖️</div>
+        <span class="time-badge">14:00</span>
+        <h3 style="margin-top:6px">波上海灘</h3>
+        <span class="tag tag-free">免費</span>
+        <p class="desc" style="margin-top:8px">距波上宮步行 5 分鐘，城市中心的免費海灘。在地人的日常休閒場所，適合踩水、拍照放鬆。下雨則跳過。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=波の上ビーチ+那覇" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+
+    <!-- 回飯店休息 -->
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">15:15</span>
+        <h3 style="margin-top:6px">回飯店休息、換裝</h3>
+        <p class="desc" style="margin-top:4px">搭單軌旭橋駅 → 美栄橋駅（1 站），回飯店休息，傍晚出發 Parco City 前有充裕緩衝時間。</p>
+      </div>
+    </div>
+
+    <!-- Parco City -->
+    <div class="timeline-item">
+      <div class="card">
+        <div class="card-img-grad" style="background:linear-gradient(135deg,#f8a5c2,#e056a0)">🐾</div>
+        <span class="time-badge">17:30</span>
+        <h3 style="margin-top:6px">Parco City｜吉伊卡哇 + 晚餐</h3>
+        <span class="tag tag-must">限定商品</span>
+        <p class="desc" style="margin-top:8px">吉伊卡哇 × 沖繩守護神「シーサー（獅薩）」聯名限定伴手禮店在 3F，全日本獨家。逛完直接在 Parco City 餐廳樓層用晚餐，有海景餐廳多間可選。</p>
+        <div class="transport-box">
+          <h4>🚖 飯店 → Parco City</h4>
+          <div class="transport-row">
+            <span class="method">計程車</span>
+            <span class="detail">約 20–25 分鐘｜¥1,800–2,500（3 人共乘划算）</span>
+          </div>
+          <div class="transport-row">
+            <span class="method">接駁巴士</span>
+            <span class="detail">步行至おもろまち駅（3 站）再搭接駁，約 35 分鐘｜¥300/人</span>
+          </div>
+        </div>
+        <div class="transport-box">
+          <h4>🚖 Parco City → 飯店（約 20:00）</h4>
+          <div class="transport-row">
+            <span class="method">計程車</span>
+            <span class="detail">約 15–20 分鐘｜¥1,500–2,000</span>
+          </div>
+          <div class="transport-row">
+            <span class="method">公車 R26</span>
+            <span class="detail">約 40 分鐘｜¥420/人（注意末班車）</span>
+          </div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=SAN-A浦添西海岸PARCO+CITY" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Parco City 導航
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== DAY 3 ===================== -->
+<div class="section" id="day3">
+  <div class="section-header">
+    <span class="day-badge">Day 3</span>
+    <h2>Klook 北部一日遊</h2>
+  </div>
+  <div class="note card" style="margin-bottom:12px">
+    <strong>⚠️ 出發前確認</strong>
+    Klook 集合地點（通常為那霸バスターミナル = 旭橋站旁）<br>
+    建議 <strong>08:00 出門</strong>，搭單軌 1 站到旭橋站
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">07:00</span>
+        <h3 style="margin-top:6px">早餐｜便利商店</h3>
+        <p class="desc" style="margin-top:4px">今天行程長，快速吃。7-11 / FamilyMart 日本便利商店早餐品質很好，飯糰 + 熱咖啡即可出發。</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="card">
+        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Onna_Okinawa_Japan_Cape-Manzamo-01.jpg/800px-Onna_Okinawa_Japan_Cape-Manzamo-01.jpg" alt="萬座毛">
+        <span class="time-badge">09:45</span>
+        <h3 style="margin-top:6px">萬座毛</h3>
+        <span class="tag tag-free">免費</span>
+        <p class="desc" style="margin-top:8px">沖繩本島著名海岬，珊瑚礁岩石被海風侵蝕成「象鼻」造型。站在岩壁上俯瞰東海，視野壯闊，是沖繩最具代表性的自然景觀之一。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=万座毛+沖縄" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">11:40</span>
+        <h3 style="margin-top:6px">Hanasaki Marche｜午餐</h3>
+        <p class="desc" style="margin-top:4px">沖繩北部美麗複合式商場，以「沖繩最美海景星巴克」聞名，可眺望蔚藍大海邊用餐。</p>
+        <ul class="dish-list" style="margin-bottom:10px">
+          <li><span class="dish-name">豬肉蛋飯糰</span><span class="dish-desc">此處版本用料豪邁，現點現做</span></li>
+          <li><span class="dish-name">海景星巴克</span><span class="dish-desc">落地窗面海，拍照打卡</span></li>
+          <li><span class="dish-name">各式市集輕食</span><span class="dish-desc">多家小店，可各買一樣分著吃</span></li>
+        </ul>
+        <a class="map-btn" href="https://maps.google.com/?q=花咲マルシェ+沖縄" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="card">
+        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Main_tank_of_the_Kuroshio_Sea_in_Okinawa_Churaumi_Aquarium.JPG/800px-Main_tank_of_the_Kuroshio_Sea_in_Okinawa_Churaumi_Aquarium.JPG" alt="沖繩美麗海水族館">
+        <span class="time-badge">12:50</span>
+        <h3 style="margin-top:6px">沖繩美麗海水族館</h3>
+        <span class="tag tag-must">⭐ 15:00 鯨鯊餵食秀必看！</span>
+        <p class="desc" style="margin-top:8px">全球第二大水槽「黑潮之海」，鯨鯊與魔鬼魚在眼前悠游。建議提早在大水槽前卡位等餵食秀。預留 3 小時參觀。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=沖縄美ら海水族館" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">17:30</span>
+        <h3 style="margin-top:6px">🔀 在此選擇路線</h3>
+        <p class="desc" style="margin-top:4px;margin-bottom:14px">點選你們今晚的計畫：</p>
+        <div class="route-split">
+          <button class="route-btn route-a" onclick="showRoute('a')">🅰️ 美國村<br>下車繼續玩</button>
+          <button class="route-btn route-b" onclick="showRoute('b')">🅱️ 直接回<br>那霸吃晚餐</button>
+        </div>
+
+        <!-- ROUTE A -->
+        <div id="routeA" class="route-section">
+          <div class="card" style="background:#FFFBEF;border:1px solid #FFD166;margin-bottom:10px">
+            <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Mihama_Town_Resort_American_Village_3.JPG/800px-Mihama_Town_Resort_American_Village_3.JPG" alt="美國村">
+            <h3>🅰️ 美國村探索</h3>
+            <p class="desc" style="margin-top:4px">前美軍基地改建的複合娛樂區，充滿美式風情，有摩天輪、購物中心、各式餐廳，夕陽景色絕美。</p>
+            <a class="map-btn" href="https://maps.google.com/?q=アメリカンビレッジ+北谷" target="_blank" style="margin-bottom:10px;display:inline-flex">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              美國村導航
+            </a>
+          </div>
+
+          <div class="options-label">晚餐選項（18:30–20:00）</div>
+
+          <div class="restaurant-card">
+            <div class="restaurant-header" onclick="toggleRestaurant(this)">
+              <div><h4>選項 A｜Sam's Maui</h4></div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="price">¥3,500–5,000/人</span>
+                <span class="toggle-arrow">▼</span>
+              </div>
+            </div>
+            <div class="restaurant-body">
+              <p class="desc">美國村地標餐廳，美式海鮮牛排老店，面海景。建議提前訂位。</p>
+              <ul class="dish-list">
+                <li><span class="dish-name">龍蝦（ロブスター）</span><span class="dish-desc">海鮮招牌，現點現烤</span></li>
+                <li><span class="dish-name">T-bone 牛排</span><span class="dish-desc">份量大，適合食量好的朋友</span></li>
+                <li><span class="dish-name">海鮮拼盤</span><span class="dish-desc">多人分享首選</span></li>
+              </ul>
+              <a class="map-btn" href="https://maps.google.com/?q=Sam%27s+Maui+北谷+沖縄" target="_blank">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="restaurant-card">
+            <div class="restaurant-header" onclick="toggleRestaurant(this)">
+              <div><h4>選項 B｜Coin Parking Dining</h4></div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="price">¥1,500–2,500/人</span>
+                <span class="toggle-arrow">▼</span>
+              </div>
+            </div>
+            <div class="restaurant-body">
+              <p class="desc">廢棄停車場改建的創意餐廳，空間獨特，IG 打卡熱點。</p>
+              <ul class="dish-list">
+                <li><span class="dish-name">美式漢堡</span><span class="dish-desc">招牌主食，份量十足</span></li>
+                <li><span class="dish-name">沖繩融合牛排</span><span class="dish-desc">結合沖繩食材的創意料理</span></li>
+                <li><span class="dish-name">特製薯條</span><span class="dish-desc">搭餐必點</span></li>
+              </ul>
+              <a class="map-btn" href="https://maps.google.com/?q=Coin+Parking+Dining+北谷+沖縄" target="_blank">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="restaurant-card">
+            <div class="restaurant-header" onclick="toggleRestaurant(this)">
+              <div><h4>選項 C｜Ristorante La Cucina</h4></div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="price">¥2,000–3,500/人</span>
+                <span class="toggle-arrow">▼</span>
+              </div>
+            </div>
+            <div class="restaurant-body">
+              <p class="desc">義式海景餐廳，日落時段景色最美，氣氛優雅輕鬆。</p>
+              <ul class="dish-list">
+                <li><span class="dish-name">海鮮義大利麵</span><span class="dish-desc">使用沖繩當日海鮮</span></li>
+                <li><span class="dish-name">薄皮披薩</span><span class="dish-desc">窯烤，餅皮香脆</span></li>
+                <li><span class="dish-name">提拉米蘇</span><span class="dish-desc">甜點推薦</span></li>
+              </ul>
+              <a class="map-btn" href="https://maps.google.com/?q=Ristorante+La+Cucina+北谷+沖縄" target="_blank">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="transport-box" style="margin-top:12px">
+            <h4>🚖 美國村 → 那霸飯店（約 20:00）</h4>
+            <div class="transport-row">
+              <span class="method">計程車</span>
+              <span class="detail">約 30–40 分鐘｜¥3,500–4,500（3 人分攤 ≈ ¥1,200–1,500 each）</span>
+            </div>
+            <div class="transport-row">
+              <span class="method">公車 R28</span>
+              <span class="detail">約 45–50 分鐘｜¥640/人｜下車：那霸バスターミナル（旭橋）</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROUTE B -->
+        <div id="routeB" class="route-section">
+          <div class="options-label">那霸晚餐選項（19:00）</div>
+
+          <div class="restaurant-card">
+            <div class="restaurant-header" onclick="toggleRestaurant(this)">
+              <div>
+                <h4>選項 A｜ジャッキーステーキハウス</h4>
+                <span class="tag tag-reserve">建議訂位</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="price">¥2,500–4,000/人</span>
+                <span class="toggle-arrow">▼</span>
+              </div>
+            </div>
+            <div class="restaurant-body">
+              <p class="desc">沖繩在地 60 年老牌牛排館，價格實惠、份量大。位於旭橋站附近。</p>
+              <ul class="dish-list">
+                <li><span class="dish-name">沙朗牛排</span><span class="dish-desc">招牌，熟度可選</span></li>
+                <li><span class="dish-name">牛排套餐</span><span class="dish-desc">含湯、沙拉、麵包</span></li>
+                <li><span class="dish-name">牛肉漢堡排</span><span class="dish-desc">份量大、性價比高</span></li>
+              </ul>
+              <a class="map-btn" href="https://maps.google.com/?q=ジャッキーステーキハウス+那覇" target="_blank">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="restaurant-card">
+            <div class="restaurant-header" onclick="toggleRestaurant(this)">
+              <div><h4>選項 B｜ステーキハウス 88 国際通り</h4></div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="price">¥2,500–3,500/人</span>
+                <span class="toggle-arrow">▼</span>
+              </div>
+            </div>
+            <div class="restaurant-body">
+              <p class="desc">那霸人氣牛排名店，就在國際通上，交通最方便。</p>
+              <ul class="dish-list">
+                <li><span class="dish-name">熔岩牛排</span><span class="dish-desc">招牌主打，嫩度佳</span></li>
+                <li><span class="dish-name">沖繩牛排套餐</span><span class="dish-desc">含沙拉、湯、白飯或麵包</span></li>
+                <li><span class="dish-name">牛肉蓋飯</span><span class="dish-desc">價位較親民的選擇</span></li>
+              </ul>
+              <a class="map-btn" href="https://maps.google.com/?q=ステーキハウス88+国際通り+那覇" target="_blank">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="restaurant-card">
+            <div class="restaurant-header" onclick="toggleRestaurant(this)">
+              <div><h4>選項 C｜浮島ガーデン</h4></div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="price">¥1,500–2,000/人</span>
+                <span class="toggle-arrow">▼</span>
+              </div>
+            </div>
+            <div class="restaurant-body">
+              <p class="desc">沖繩料理結合有機蔬菜，口味清淡，玩了一整天適合輕鬆吃。</p>
+              <ul class="dish-list">
+                <li><span class="dish-name">沖繩野菜炒物</span><span class="dish-desc">當季島野菜，清爽健康</span></li>
+                <li><span class="dish-name">島豆腐料理</span><span class="dish-desc">沖繩特有豆腐，口感紮實</span></li>
+                <li><span class="dish-name">泡盛調酒</span><span class="dish-desc">輕鬆小酌</span></li>
+              </ul>
+              <a class="map-btn" href="https://maps.google.com/?q=浮島ガーデン+那覇" target="_blank">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DAY 4 ===================== -->
+<div class="section" id="day4">
+  <div class="section-header">
+    <span class="day-badge">Day 4</span>
+    <h2>購物伴手禮 → 機場</h2>
+  </div>
+  <div class="note card" style="margin-bottom:12px">
+    <strong>⏰ 重要時間節點</strong>
+    MM929 16:45 起飛｜需 14:45 前抵達那霸機場<br>
+    美栄橋駅 → 那霸空港駅：約 15 分鐘<br>
+    <strong>最晚 14:20 離開飯店</strong>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">08:00</span>
+        <h3 style="margin-top:6px">飯店早餐</h3>
+        <p class="desc" style="margin-top:4px">最後一天輕鬆吃，在飯店用早餐。</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">11:00</span>
+        <h3 style="margin-top:6px">退房｜行李寄放前台</h3>
+        <p class="desc" style="margin-top:4px">輕裝去購物，13:30 回來取行李。</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">11:00–13:30</span>
+        <h3 style="margin-top:6px">國際通購物 + 伴手禮</h3>
+        <p class="desc" style="margin-top:4px">詳細採購清單見下方「伴手禮」頁籤。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=国際通り+那覇" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          國際通導航
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">14:20</span>
+        <h3 style="margin-top:6px">出發機場</h3>
+        <p class="desc" style="margin-top:4px">取行李 → 步行至美栄橋駅 → 搭 Yui Rail → 那霸空港駅（約 15 分鐘）</p>
+        <a class="map-btn" href="https://maps.google.com/?q=那覇空港" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          那霸機場導航
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RAIN ===================== -->
+<div class="section" id="rain">
+  <div class="section-header">
+    <span class="day-badge" style="background:#4A90D9">☔ 雨天</span>
+    <h2>備案行程（Day 2 適用）</h2>
+  </div>
+  <div class="rain-header">
+    <strong>☔ 6 月是沖繩梅雨季，若 Day 2 下雨</strong>
+    波上宮保留（神社有屋頂走廊，雨天照常可去）<br>
+    波上海灘跳過，改去室內景點補時間。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">08:00</span>
+        <h3 style="margin-top:6px">早餐｜ポーたま 牧志市場店</h3>
+        <p class="desc" style="margin-top:4px">與晴天相同，照常前往。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=ポーたま+牧志市場店" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">09:45</span>
+        <h3 style="margin-top:6px">波上宮（雨天照常）</h3>
+        <span class="tag tag-indoor">有屋頂走廊</span>
+        <p class="desc" style="margin-top:8px">神社有屋頂走廊遮雨，下雨天參拜也很有氛圍。海灘則直接跳過。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=波上宮+那覇" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">11:00</span>
+        <h3 style="margin-top:6px">沖繩縣立博物館・美術館</h3>
+        <span class="tag tag-indoor">完全室內</span>
+        <p class="desc" style="margin-top:8px">おもろまち駅步行 5 分鐘。常設展介紹琉球王朝歷史、沖繩自然生態與民俗文化，圖文豐富。預留 1.5–2 小時。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=沖縄県立博物館+美術館" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">13:30</span>
+        <h3 style="margin-top:6px">午餐</h3>
+        <p class="desc" style="margin-top:4px">搭單軌回牧志 / 縣廳前，選擇同 Day 2 晴天午餐選項。</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">14:30</span>
+        <h3 style="margin-top:6px">牧志公設市場</h3>
+        <span class="tag tag-indoor">室內有頂</span>
+        <p class="desc" style="margin-top:8px">逛逛市場氛圍即可。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=第一牧志公設市場" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">15:30</span>
+        <h3 style="margin-top:6px">那霸市傳統工藝體驗</h3>
+        <span class="tag tag-indoor">完全室內</span>
+        <p class="desc" style="margin-top:8px">沖繩傳統「紅型」布料染色，或琉球玻璃製作。全程室內，約 1–1.5 小時，成品可帶回當紀念品。建議事先查詢是否需預約。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=那覇市伝統工芸館" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <span class="time-badge">17:30</span>
+        <h3 style="margin-top:6px">Parco City（雨天合併）</h3>
+        <p class="desc" style="margin-top:4px">吉伊卡哇採購 + 晚餐，雨天把購物和吉伊卡哇直接合併，不分兩天。交通方式同 Day 2 晴天版。</p>
+        <a class="map-btn" href="https://maps.google.com/?q=SAN-A浦添西海岸PARCO+CITY" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Parco City 導航
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SHOPPING ===================== -->
+<div class="section" id="shopping">
+  <div class="section-header">
+    <span class="day-badge" style="background:#e17055">🛍️ 伴手禮</span>
+    <h2>採購清單</h2>
+  </div>
+
+  <div class="shopping-item">
+    <div class="shopping-icon">🍰</div>
+    <div class="shopping-info">
+      <h4>紅芋塔</h4>
+      <p>購買地點：御菓子御殿（國際通店）<br>要冷藏，最後一天買最新鮮</p>
+      <a class="map-btn" href="https://maps.google.com/?q=御菓子御殿+国際通り" target="_blank" style="margin-top:8px;display:inline-flex">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        導航
+      </a>
+    </div>
+  </div>
+
+  <div class="shopping-item">
+    <div class="shopping-icon">🍪</div>
+    <div class="shopping-info">
+      <h4>金楚糕（ちんすこう）</h4>
+      <p>購買地點：新垣菓子店 / 御菓子御殿<br>比機場便宜 20–30%，多口味可試吃</p>
+      <a class="map-btn" href="https://maps.google.com/?q=新垣菓子店+那覇" target="_blank" style="margin-top:8px;display:inline-flex">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        導航
+      </a>
+    </div>
+  </div>
+
+  <div class="shopping-item">
+    <div class="shopping-icon">🧴</div>
+    <div class="shopping-info">
+      <h4>藥妝</h4>
+      <p>購買地點：ドン・キホーテ 国際通り<br>肌膚保養、防曬、零食均有｜注意液體 100ml 限制</p>
+      <a class="map-btn" href="https://maps.google.com/?q=ドン・キホーテ+国際通り+那覇" target="_blank" style="margin-top:8px;display:inline-flex">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        導航
+      </a>
+    </div>
+  </div>
+
+  <div class="shopping-item">
+    <div class="shopping-icon">🧂</div>
+    <div class="shopping-info">
+      <h4>海鹽餅乾 / 海鹽巧克力</h4>
+      <p>購買地點：AEON 那覇店 / 各藥妝<br>送禮 CP 值最高，重量輕好帶</p>
+    </div>
+  </div>
+
+  <div class="shopping-item">
+    <div class="shopping-icon">🥃</div>
+    <div class="shopping-info">
+      <h4>泡盛（AWAMORI）</h4>
+      <p>購買地點：國際通酒鋪<br>送長輩、男性好選擇，注意航空液體規定</p>
+    </div>
+  </div>
+
+  <div class="shopping-item">
+    <div class="shopping-icon">🌿</div>
+    <div class="shopping-info">
+      <h4>海葡萄（乾燥包）</h4>
+      <p>購買地點：國際通土產店<br>常溫保存，可帶回台灣</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>🌺 沖繩 2026｜旅途平安、玩得開心！</footer>
+
+<script>
+function toggleRestaurant(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.toggle-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+function showRoute(type) {
+  document.getElementById('routeA').classList.remove('active');
+  document.getElementById('routeB').classList.remove('active');
+  document.getElementById('route' + type.toUpperCase()).classList.add('active');
+}
+
+// Highlight nav on scroll
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 60) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
