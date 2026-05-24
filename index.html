@@ -211,6 +211,15 @@
 
   .divider { height: 1px; background: #DDE8EF; margin: 16px 0; }
 
+  /* LEAVE BADGE */
+  .leave-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #FDEDEC; color: #c0392b;
+    border: 1px solid #fadbd8; border-radius: 8px;
+    padding: 5px 10px; font-size: 12px; font-weight: 700;
+    margin: 8px 0 6px;
+  }
+
   footer { text-align: center; padding: 24px; font-size: 12px; color: #999; }
 </style>
 </head>
@@ -643,9 +652,10 @@
     <h2>Klook 北部一日遊</h2>
   </div>
   <div class="note card" style="margin-bottom:12px">
-    <strong>⚠️ 出發前確認</strong>
-    Klook 集合地點（通常為那霸バスターミナル = 旭橋站旁）<br>
-    建議 <strong>08:00 出門</strong>，搭單軌 1 站到旭橋站
+    <strong>🚌 集合資訊</strong>
+    集合地點：<strong>那霸縣廳前 Blue Seal Palette 久茂地店</strong>（パレットくもじ旁）<br>
+    集合時間：<strong>08:30 準時</strong>｜建議 <strong>08:15 到達</strong><br>
+    最近單軌：<strong>縣廳前駅</strong>，出站步行約 2 分鐘
   </div>
 
   <div class="timeline">
@@ -655,6 +665,7 @@
         <span class="time-badge">07:00</span>
         <h3 style="margin-top:6px">早餐｜便利商店</h3>
         <p class="desc" style="margin-top:4px">今天行程長，快速吃。7-11 / FamilyMart 日本便利商店早餐品質很好，飯糰 + 熱咖啡即可出發。</p>
+        <div class="leave-badge">🚌 08:15 出門前往集合點</div>
       </div>
     </div>
 
@@ -666,6 +677,7 @@
         <p class="hours">⏰ 08:00–18:00 <span class="hours-rest">入場 ¥100</span></p>
         <span class="tag tag-free">免費</span>
         <p class="desc" style="margin-top:8px">沖繩本島著名海岬，珊瑚礁岩石被海風侵蝕成「象鼻」造型。站在岩壁上俯瞰東海，視野壯闊，是沖繩最具代表性的自然景觀之一。</p>
+        <div class="leave-badge">🚌 最晚 10:35 離開（停留約 1 小時）</div>
         <a class="map-btn" href="https://maps.google.com/?q=万座毛+沖縄" target="_blank">
           <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           Google Maps
@@ -679,6 +691,7 @@
         <h3 style="margin-top:6px">Hanasaki Marche｜午餐</h3>
         <p class="hours">⏰ 11:00–20:00 <span class="hours-rest">週三休</span></p>
         <p class="desc" style="margin-top:4px">沖繩北部美麗複合式商場，以「沖繩最美海景星巴克」聞名，可眺望蔚藍大海邊用餐。</p>
+        <div class="leave-badge">🚌 最晚 12:30 離開（停留約 1 小時）</div>
         <ul class="dish-list" style="margin-bottom:10px">
           <li><span class="dish-name">豬肉蛋飯糰</span><span class="dish-desc">此處版本用料豪邁，現點現做</span></li>
           <li><span class="dish-name">海景星巴克</span><span class="dish-desc">落地窗面海，拍照打卡</span></li>
@@ -699,6 +712,7 @@
         <p class="hours">⏰ 08:30–18:30 <span class="hours-rest">票價 ¥2,180／人</span></p>
         <span class="tag tag-must">⭐ 15:00 鯨鯊餵食秀必看！</span>
         <p class="desc" style="margin-top:8px">全球第二大水槽「黑潮之海」，鯨鯊與魔鬼魚在眼前悠游。建議提早在大水槽前卡位等餵食秀。預留 3 小時參觀。</p>
+        <div class="leave-badge">🚌 最晚 15:40 離開（停留約 3 小時）</div>
         <a class="map-btn" href="https://maps.google.com/?q=沖縄美ら海水族館" target="_blank">
           <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           Google Maps
