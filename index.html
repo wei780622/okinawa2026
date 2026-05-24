@@ -197,6 +197,18 @@
   .tag-indoor { background: #D6EAF8; color: #1a5276; }
   .tag-must { background: #FDEDEC; color: #922b21; }
 
+  /* HOURS */
+  .hours {
+    font-size: 12px; color: #27ae60; font-weight: 600;
+    margin: 4px 0 8px; display: flex; align-items: center; gap: 4px;
+  }
+  .hours-rest { color: #e17055; font-weight: 400; margin-left: 4px; }
+  .rest-hours { font-size: 11px; color: #aaa; margin-left: 2px; font-weight:400; }
+  .restaurant-hours {
+    font-size: 11px; color: #27ae60; font-weight: 600;
+    margin-top: 2px; display: block;
+  }
+
   .divider { height: 1px; background: #DDE8EF; margin: 16px 0; }
 
   footer { text-align: center; padding: 24px; font-size: 12px; color: #999; }
@@ -309,6 +321,7 @@
           <div class="restaurant-header" onclick="toggleRestaurant(this)">
             <div>
               <h4>🥇 選項 A｜ゆうなんぎぃ</h4>
+              <span class="restaurant-hours">⏰ 12:00–14:30 / 17:30–22:00　週一休</span>
               <span class="tag tag-reserve">建議訂位</span>
             </div>
             <div style="display:flex;align-items:center;gap:8px">
@@ -335,7 +348,10 @@
 
         <div class="restaurant-card">
           <div class="restaurant-header" onclick="toggleRestaurant(this)">
-            <div><h4>選項 B｜浜の家</h4></div>
+            <div>
+              <h4>選項 B｜浜の家</h4>
+              <span class="restaurant-hours">⏰ 17:00–22:00　週日休</span>
+            </div>
             <div style="display:flex;align-items:center;gap:8px">
               <span class="price">¥2,500–3,500/人</span>
               <span class="toggle-arrow">▼</span>
@@ -358,7 +374,10 @@
 
         <div class="restaurant-card">
           <div class="restaurant-header" onclick="toggleRestaurant(this)">
-            <div><h4>選項 C｜三笠食堂</h4></div>
+            <div>
+              <h4>選項 C｜三笠食堂</h4>
+              <span class="restaurant-hours">⏰ 08:00–20:00</span>
+            </div>
             <div style="display:flex;align-items:center;gap:8px">
               <span class="price">¥1,000–1,500/人</span>
               <span class="toggle-arrow">▼</span>
@@ -412,6 +431,7 @@
         <img class="card-img" src="imgs/spam-musubi.jpg" alt="沖繩飯糰">
         <span class="time-badge">08:00</span>
         <h3 style="margin-top:6px">早餐｜ポーたま 牧志市場店</h3>
+        <p class="hours">⏰ 07:00–18:00 <span class="hours-rest">售完提前關門</span></p>
         <p class="desc" style="margin-top:4px">沖繩靈魂早餐，SPAM 午餐肉 + 厚煎蛋 + 海苔包白飯。07:00 開門，步行 12 分鐘可到。</p>
         <span class="tag tag-must">必吃</span>
         <ul class="dish-list" style="margin-top:10px">
@@ -431,9 +451,10 @@
     <!-- 牧志公設市場 -->
     <div class="timeline-item">
       <div class="card">
-        <div class="card-img-grad" style="background:linear-gradient(135deg,#f39c12,#e67e22)">🐟</div>
+        <img class="card-img" src="imgs/makishi.jpg" alt="牧志公設市場">
         <span class="time-badge">09:00</span>
         <h3 style="margin-top:6px">牧志公設市場</h3>
+        <p class="hours">⏰ 08:00–21:00 <span class="hours-rest">週三休</span></p>
         <span class="tag tag-free">免費入場</span><span class="tag tag-indoor">室內</span>
         <p class="desc" style="margin-top:8px">那霸最具生命力的傳統市場，販售沖繩食材、熱帶水果、海鮮。早上最熱鬧，攤販剛開、食材最新鮮，逛逛感受市場氛圍即可。</p>
         <a class="map-btn" href="https://maps.google.com/?q=第一牧志公設市場" target="_blank">
@@ -446,8 +467,10 @@
     <!-- 壺屋 -->
     <div class="timeline-item">
       <div class="card">
+        <img class="card-img" src="imgs/tsuboya.jpg" alt="壺屋陶藝街">
         <span class="time-badge">10:00</span>
         <h3 style="margin-top:6px">壺屋やちむん通り</h3>
+        <p class="hours">⏰ 10:00–18:00 <span class="hours-rest">各店略有不同</span></p>
         <span class="tag tag-free">免費</span>
         <p class="desc" style="margin-top:8px">「やちむん」為沖繩方言的「陶器」，約 300 年歷史的傳統陶藝街，距牧志市場步行 10 分鐘。可買小陶碗、杯子當伴手禮，價格合理，輕鬆散步。</p>
         <a class="map-btn" href="https://maps.google.com/?q=壺屋やちむん通り+那覇" target="_blank">
@@ -467,7 +490,10 @@
 
         <div class="restaurant-card">
           <div class="restaurant-header" onclick="toggleRestaurant(this)">
-            <div><h4>選項 A｜沖縄そば 田 那覇店</h4></div>
+            <div>
+              <h4>選項 A｜沖縄そば 田 那覇店</h4>
+              <span class="restaurant-hours">⏰ 11:00–16:00　售完提前關門</span>
+            </div>
             <div style="display:flex;align-items:center;gap:8px">
               <span class="price">¥900–1,200/人</span>
               <span class="toggle-arrow">▼</span>
@@ -490,7 +516,10 @@
 
         <div class="restaurant-card">
           <div class="restaurant-header" onclick="toggleRestaurant(this)">
-            <div><h4>選項 B｜パレットくもじ 地下美食街</h4></div>
+            <div>
+              <h4>選項 B｜パレットくもじ 地下美食街</h4>
+              <span class="restaurant-hours">⏰ 10:00–20:00</span>
+            </div>
             <div style="display:flex;align-items:center;gap:8px">
               <span class="price">¥800–1,500/人</span>
               <span class="toggle-arrow">▼</span>
@@ -507,7 +536,10 @@
 
         <div class="restaurant-card">
           <div class="restaurant-header" onclick="toggleRestaurant(this)">
-            <div><h4>選項 C｜A&W 国際通り店</h4></div>
+            <div>
+              <h4>選項 C｜A&W 国際通り店</h4>
+              <span class="restaurant-hours">⏰ 07:00–23:00</span>
+            </div>
             <div style="display:flex;align-items:center;gap:8px">
               <span class="price">¥700–1,200/人</span>
               <span class="toggle-arrow">▼</span>
@@ -536,6 +568,7 @@
         <img class="card-img" src="imgs/naminoue.jpg" alt="波上宮">
         <span class="time-badge">13:00</span>
         <h3 style="margin-top:6px">波上宮</h3>
+        <p class="hours">⏰ 境內 24 小時 <span class="hours-rest">社務所 09:00–17:00</span></p>
         <span class="tag tag-free">免費</span><span class="tag tag-indoor">雨天可去</span>
         <p class="desc" style="margin-top:8px">沖繩最古老、地位最高的神社，建在珊瑚礁岩壁上。鮮紅鳥居配上蔚藍大海，下午光線充足，拍照更漂亮。神社有屋頂走廊，下雨也可參觀。</p>
         <p style="font-size:12px;color:#888;margin-bottom:10px">交通：牧志駅 → 旭橋駅（2 站）→ 步行 15 分鐘</p>
@@ -552,6 +585,7 @@
         <div class="card-img-grad" style="background:linear-gradient(135deg,#0096c7,#48cae4)">🏖️</div>
         <span class="time-badge">14:00</span>
         <h3 style="margin-top:6px">波上海灘</h3>
+        <p class="hours">⏰ 09:00–18:00 <span class="hours-rest">6 月梅雨季開放</span></p>
         <span class="tag tag-free">免費</span>
         <p class="desc" style="margin-top:8px">距波上宮步行 5 分鐘，城市中心的免費海灘。在地人的日常休閒場所，適合踩水、拍照放鬆。下雨則跳過。</p>
         <a class="map-btn" href="https://maps.google.com/?q=波の上ビーチ+那覇" target="_blank">
@@ -567,6 +601,7 @@
         <img class="card-img" src="imgs/chiikawa2.jpg" alt="吉伊卡哇">
         <span class="time-badge">17:30</span>
         <h3 style="margin-top:6px">Parco City｜吉伊卡哇 + 晚餐</h3>
+        <p class="hours">⏰ 10:00–22:00</p>
         <span class="tag tag-must">限定商品</span>
         <p class="desc" style="margin-top:8px">吉伊卡哇 × 沖繩守護神「シーサー（獅薩）」聯名限定伴手禮店在 3F，全日本獨家。逛完直接在 Parco City 餐廳樓層用晚餐，有海景餐廳多間可選。</p>
         <div class="transport-box">
@@ -628,6 +663,7 @@
         <img class="card-img" src="imgs/manzamo.jpg" alt="萬座毛">
         <span class="time-badge">09:45</span>
         <h3 style="margin-top:6px">萬座毛</h3>
+        <p class="hours">⏰ 08:00–18:00 <span class="hours-rest">入場 ¥100</span></p>
         <span class="tag tag-free">免費</span>
         <p class="desc" style="margin-top:8px">沖繩本島著名海岬，珊瑚礁岩石被海風侵蝕成「象鼻」造型。站在岩壁上俯瞰東海，視野壯闊，是沖繩最具代表性的自然景觀之一。</p>
         <a class="map-btn" href="https://maps.google.com/?q=万座毛+沖縄" target="_blank">
@@ -641,6 +677,7 @@
       <div class="card">
         <span class="time-badge">11:40</span>
         <h3 style="margin-top:6px">Hanasaki Marche｜午餐</h3>
+        <p class="hours">⏰ 11:00–20:00 <span class="hours-rest">週三休</span></p>
         <p class="desc" style="margin-top:4px">沖繩北部美麗複合式商場，以「沖繩最美海景星巴克」聞名，可眺望蔚藍大海邊用餐。</p>
         <ul class="dish-list" style="margin-bottom:10px">
           <li><span class="dish-name">豬肉蛋飯糰</span><span class="dish-desc">此處版本用料豪邁，現點現做</span></li>
@@ -659,6 +696,7 @@
         <img class="card-img" src="imgs/aquarium.jpg" alt="沖繩美麗海水族館">
         <span class="time-badge">12:50</span>
         <h3 style="margin-top:6px">沖繩美麗海水族館</h3>
+        <p class="hours">⏰ 08:30–18:30 <span class="hours-rest">票價 ¥2,180／人</span></p>
         <span class="tag tag-must">⭐ 15:00 鯨鯊餵食秀必看！</span>
         <p class="desc" style="margin-top:8px">全球第二大水槽「黑潮之海」，鯨鯊與魔鬼魚在眼前悠游。建議提早在大水槽前卡位等餵食秀。預留 3 小時參觀。</p>
         <a class="map-btn" href="https://maps.google.com/?q=沖縄美ら海水族館" target="_blank">
@@ -683,6 +721,7 @@
           <div class="card" style="background:#FFFBEF;border:1px solid #FFD166;margin-bottom:10px">
             <img class="card-img" src="imgs/american-village.jpg" alt="美國村">
             <h3>🅰️ 美國村探索</h3>
+            <p class="hours">⏰ 10:00–22:00 <span class="hours-rest">各店略有不同</span></p>
             <p class="desc" style="margin-top:4px">前美軍基地改建的複合娛樂區，充滿美式風情，有摩天輪、購物中心、各式餐廳，夕陽景色絕美。</p>
             <a class="map-btn" href="https://maps.google.com/?q=アメリカンビレッジ+北谷" target="_blank" style="margin-bottom:10px;display:inline-flex">
               <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -694,7 +733,10 @@
 
           <div class="restaurant-card">
             <div class="restaurant-header" onclick="toggleRestaurant(this)">
-              <div><h4>選項 A｜Sam's Maui</h4></div>
+              <div>
+                <h4>選項 A｜Sam's Maui</h4>
+                <span class="restaurant-hours">⏰ 17:00–22:00　週二休</span>
+              </div>
               <div style="display:flex;align-items:center;gap:8px">
                 <span class="price">¥3,500–5,000/人</span>
                 <span class="toggle-arrow">▼</span>
@@ -717,7 +759,10 @@
 
           <div class="restaurant-card">
             <div class="restaurant-header" onclick="toggleRestaurant(this)">
-              <div><h4>選項 B｜Coin Parking Dining</h4></div>
+              <div>
+                <h4>選項 B｜Coin Parking Dining</h4>
+                <span class="restaurant-hours">⏰ 11:00–23:00</span>
+              </div>
               <div style="display:flex;align-items:center;gap:8px">
                 <span class="price">¥1,500–2,500/人</span>
                 <span class="toggle-arrow">▼</span>
@@ -740,7 +785,10 @@
 
           <div class="restaurant-card">
             <div class="restaurant-header" onclick="toggleRestaurant(this)">
-              <div><h4>選項 C｜Ristorante La Cucina</h4></div>
+              <div>
+                <h4>選項 C｜Ristorante La Cucina</h4>
+                <span class="restaurant-hours">⏰ 11:30–15:00 / 17:30–22:30</span>
+              </div>
               <div style="display:flex;align-items:center;gap:8px">
                 <span class="price">¥2,000–3,500/人</span>
                 <span class="toggle-arrow">▼</span>
@@ -782,6 +830,7 @@
             <div class="restaurant-header" onclick="toggleRestaurant(this)">
               <div>
                 <h4>選項 A｜ジャッキーステーキハウス</h4>
+                <span class="restaurant-hours">⏰ 11:00–23:00</span>
                 <span class="tag tag-reserve">建議訂位</span>
               </div>
               <div style="display:flex;align-items:center;gap:8px">
@@ -806,7 +855,10 @@
 
           <div class="restaurant-card">
             <div class="restaurant-header" onclick="toggleRestaurant(this)">
-              <div><h4>選項 B｜ステーキハウス 88 国際通り</h4></div>
+              <div>
+                <h4>選項 B｜ステーキハウス 88 国際通り</h4>
+                <span class="restaurant-hours">⏰ 11:00–23:00</span>
+              </div>
               <div style="display:flex;align-items:center;gap:8px">
                 <span class="price">¥2,500–3,500/人</span>
                 <span class="toggle-arrow">▼</span>
@@ -829,7 +881,10 @@
 
           <div class="restaurant-card">
             <div class="restaurant-header" onclick="toggleRestaurant(this)">
-              <div><h4>選項 C｜浮島ガーデン</h4></div>
+              <div>
+                <h4>選項 C｜浮島ガーデン</h4>
+                <span class="restaurant-hours">⏰ 12:00–15:00 / 18:00–23:00　週日休</span>
+              </div>
               <div style="display:flex;align-items:center;gap:8px">
                 <span class="price">¥1,500–2,000/人</span>
                 <span class="toggle-arrow">▼</span>
@@ -949,6 +1004,7 @@
       <div class="card">
         <span class="time-badge">11:00</span>
         <h3 style="margin-top:6px">沖繩縣立博物館・美術館</h3>
+        <p class="hours">⏰ 09:00–18:00 <span class="hours-rest">週一休　票 ¥530</span></p>
         <span class="tag tag-indoor">完全室內</span>
         <p class="desc" style="margin-top:8px">おもろまち駅步行 5 分鐘。常設展介紹琉球王朝歷史、沖繩自然生態與民俗文化，圖文豐富。預留 1.5–2 小時。</p>
         <a class="map-btn" href="https://maps.google.com/?q=沖縄県立博物館+美術館" target="_blank">
@@ -980,6 +1036,7 @@
       <div class="card">
         <span class="time-badge">15:30</span>
         <h3 style="margin-top:6px">那霸市傳統工藝體驗</h3>
+        <p class="hours">⏰ 10:00–18:00 <span class="hours-rest">週二休　建議事先預約</span></p>
         <span class="tag tag-indoor">完全室內</span>
         <p class="desc" style="margin-top:8px">沖繩傳統「紅型」布料染色，或琉球玻璃製作。全程室內，約 1–1.5 小時，成品可帶回當紀念品。建議事先查詢是否需預約。</p>
         <a class="map-btn" href="https://maps.google.com/?q=那覇市伝統工芸館" target="_blank">
